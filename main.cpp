@@ -497,8 +497,23 @@ template <typename term_t, typename nterm_t> struct grammar_t {
     return res;
   }
 
-  std::set<_lr1item_t> lr1_closure(const std::set<_lr1item_t>& s) const {
-    std::set<_lr1item_t> res = {};
+  std::set<_lr1item_t> lr1_closure(const std::set<_lr1item_t>& items) const {
+    std::set<_lr1item_t> res = items;
+    std::set<_lr0item_t> tobe = {}, done = {};
+    for (auto &&item : items) {
+      tobe.insert(item.lr0item);
+    }
+    while (!tobe.empty()) {
+      _lr1item_t t = *tobe.begin();
+      done.insert(t);
+      if (!t.is_end()) {
+        if (t.lr0item.cursor == (t.lr0item.rule.recipe.size() - 1)) {
+        } else {
+          
+        }
+      }
+      tobe.erase(std::ranges::find(tobe, t));
+    }
   }
 
 private:
