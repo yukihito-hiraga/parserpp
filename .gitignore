@@ -1,0 +1,5 @@
+Makefile
+.vscode
+main
+.clang*
+compile_flags.txt
